@@ -591,7 +591,8 @@ function regist()
     $upfile_status = isset($_FILES['upfile']['error']) ? $_FILES['upfile']['error'] : 4;
     $pwdc = isset($_COOKIE['pwdc']) ? $_COOKIE['pwdc'] : '';
     $ip = getREMOTE_ADDR();
-    $host = gethostbyaddr($ip);
+    //$host = gethostbyaddr($ip);
+    $host = $ip; //This should improve reliability by a longshot
 
     $PMS->useModuleMethods('RegistBegin', array(
         &$name,

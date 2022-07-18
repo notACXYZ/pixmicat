@@ -87,7 +87,8 @@ class PIOmysqli implements IPIO {
 	public function dbInit($isAddInitData=true){
 		$this->dbPrepare();
 		if($this->con->query("SHOW TABLES LIKE '".$this->tablename."'")->num_rows == 0){ // 資料表不存在
-			$result = "CREATE TABLE ".$this->tablename." (primary key(no),
+			$result = "SET SQL_MODE='ALLOW_INVALID_DATES';
+	CREATE TABLE ".$this->tablename." (primary key(no),
 	index (resto),index (root),index (time),
 	no int(1) not null auto_increment,
 	resto int(1) not null,
@@ -113,7 +114,8 @@ class PIOmysqli implements IPIO {
 	ENGINE = MYISAM
 	COMMENT = 'PIO Structure V3'";
 			if(version_compare($this->con->server_info, '5.5', '<')){ // 5.5 以前版本
-				$result = "CREATE TABLE ".$this->tablename." (primary key(no),
+				$result = "SET SQL_MODE='ALLOW_INVALID_DATES';
+	CREATE TABLE ".$this->tablename." (primary key(no),
 	index (resto),index (root),index (time),
 	no int(1) not null auto_increment,
 	resto int(1) not null,

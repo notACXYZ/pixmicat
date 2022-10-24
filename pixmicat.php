@@ -99,7 +99,7 @@ function updatelog($resno = 0, $page_num = -1, $single_page = false)
                 array($resno, $page_num, $single_page, &$threads)); // "ThreadOrder" Hook Point
             $threads_count = count($threads);
             $inner_for_count = $threads_count > PAGE_DEF ? PAGE_DEF : $threads_count;
-            $page_end = ceil($threads_count / PAGE_DEF) - 1; // 頁面編號最後值
+            $page_end = ceil($threads_count / PAGE_DEF); // 頁面編號最後值
         } else { // 討論串分頁模式 (PHP動態輸出一頁份)
             $threads_count = $PIO->threadCount(); // 討論串個數
             if ($page_num < 0 || ($threads_count > 0 && ($page_num * PAGE_DEF) >= $threads_count)) {
@@ -236,7 +236,7 @@ function updatelog($resno = 0, $page_num = -1, $single_page = false)
                     $pte_vals['{$PAGENAV}'] .= '[<b>0</b>] ';
                 } // 無回應
                 else {
-                    for ($i = 0, $len = $tree_count / RE_PAGE_DEF; $i < $len; $i++) {
+                    for ($i = 0, $len = $tree_count / RE_PAGE_DEF; $i <= $len; $i++) {
                         if (!$AllRes && $page_num == $i) {
                             $pte_vals['{$PAGENAV}'] .= '[<b>' . $i . '</b>] ';
                         } else {
@@ -266,7 +266,7 @@ function updatelog($resno = 0, $page_num = -1, $single_page = false)
                 $pte_vals['{$PAGENAV}'] .= '<td style="white-space: nowrap;">' . _T('first_page') . '</td>';
             }
             $pte_vals['{$PAGENAV}'] .= '<td>';
-            for ($i = 0, $len = $threads_count / PAGE_DEF; $i < $len; $i++) {
+            for ($i = 0, $len = $threads_count / PAGE_DEF; $i <= $len; $i++) {
                 if ($page == $i) {
                     $pte_vals['{$PAGENAV}'] .= "[<b>" . $i . "</b>] ";
                 } else {

@@ -44,7 +44,7 @@ function createDirectories()
     foreach ($chkfolder as $value) {
         if (!is_dir($value)) {
             mkdir($value);
-            chmod($value, 0777);
+            chmod($value, 0755);
         }
     }
 }

@@ -399,7 +399,8 @@ function regist(){
 	$upfile_name = isset($_FILES['upfile']['name']) ? $_FILES['upfile']['name'] : false;
 	$upfile_status = isset($_FILES['upfile']['error']) ? $_FILES['upfile']['error'] : 4;
 	$pwdc = isset($_COOKIE['pwdc']) ? $_COOKIE['pwdc'] : '';
-	$ip = getREMOTE_ADDR(); $host = gethostbyaddr($ip);
+	$ip = getREMOTE_ADDR(); //$host = gethostbyaddr($ip);
+	$host = $ip; //This should improve reliability by a longshot
 
 	$PMS->useModuleMethods('RegistBegin', array(&$name, &$email, &$sub, &$com, array('file'=>&$upfile, 'path'=>&$upfile_path, 'name'=>&$upfile_name, 'status'=>&$upfile_status), array('ip'=>$ip, 'host'=>$host), $resto)); // "RegistBegin" Hook Point
 	// 封鎖：IP/Hostname/DNSBL 檢查機能
